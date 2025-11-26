@@ -198,7 +198,7 @@ def return_place(db:Session = Depends(get_db)):
     return {"waiting list":soldiers}
 
 @app.get('/search{soldier_id}')
-def search_soldier(soldier_id,db:Session = Depends(get_db)):
+def search_soldier(soldier_id:int,db:Session = Depends(get_db)):
     db_soldier = db.query(Soldier).filter(Soldier.privet_number == soldier_id).first()
     if not db_soldier:
         raise HTTPException(status_code=404,detail='soldier not found')
